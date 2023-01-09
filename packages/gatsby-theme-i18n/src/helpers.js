@@ -8,13 +8,15 @@ function localizedPath({ defaultLang, prefixDefault, locale, path }) {
     return path
   }
 
-  const [, base] = path.split(`/`)
+  if (path) {
+    const [, base] = path.split(`/`)
 
-  // If for whatever reason we receive an already localized path
-  // (e.g. if the path was made with location.pathname)
-  // just return it as-is.
-  if (base === locale) {
-    return path
+    // If for whatever reason we receive an already localized path
+    // (e.g. if the path was made with location.pathname)
+    // just return it as-is.
+    if (base === locale) {
+      return path
+    }
   }
 
   // If it's another language, prefix with the locale
